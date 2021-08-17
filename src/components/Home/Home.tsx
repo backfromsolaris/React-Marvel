@@ -76,7 +76,7 @@ export const Home = (props:Props) => {
                     </h1>
                     <ul className={`${classes.navigation} ${classes.logo_navigation}`}>
                         <li>
-                            <Link to='/' className={classes.nav_a}>MARVEL Home</Link>
+                            <Link to='/' className={classes.nav_a}>Home</Link>
                         </li>
                         <li>
                             <Link to='/signin' className={classes.nav_a}>Sign In</Link>
