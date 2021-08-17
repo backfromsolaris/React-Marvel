@@ -91,7 +91,7 @@ export const Home = (props:Props) => {
                 <div className={classes.main_text}>
                     <h1>{props.title}</h1>
                     <p className={classes.subTitle}>Let's Get MARVELous</p>
-                    <Button variant="outlined" color="secondary">MARVEL Time</Button>
+                    <Button variant="outlined" color="secondary">MARVELMARVERL Time</Button>
                 </div>
             </main>
         </div>
