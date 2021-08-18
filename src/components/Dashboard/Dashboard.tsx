@@ -21,7 +21,9 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import clsx from 'clsx';
 import { RouteComponentProps, withRouter, Switch, Route } from "react-router-dom";
 import { useState } from 'react';
-// import { DataTable } from '../../components';
+import { DataTable } from '../../components';
+import marvel_background from '../../assets/images/wp2436369-marvel-cinematic-universe-wallpapers.jpg';
+
 
 // setting up drawer styling and methods to open/close
 const drawerWidth = 240;
@@ -30,6 +32,10 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
       display: 'flex',
+      backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${marvel_background})`,
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center'
     },
     appBar: {
       transition: theme.transitions.create(['margin', 'width'], {
@@ -57,6 +63,8 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawerPaper: {
       width: drawerWidth,
+      backgroundColor: 'black',
+      color: 'white'
     },
     drawerHeader: {
       display: 'flex',
@@ -66,6 +74,9 @@ const useStyles = makeStyles((theme: Theme) =>
         // adding in for header to separate this from the rest of our toolbar
       ...theme.mixins.toolbar,
       justifyContent: 'flex-end',
+    },
+    iconButton: {
+        color: 'white'
     },
     content: {
       flexGrow: 1,
@@ -85,6 +96,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     toolbar:{
       display: 'flex',
+      backgroundColor: 'black'
     },
     toolbar_button: {
       marginLeft: 'auto',
@@ -151,7 +163,7 @@ export const Dashboard = withRouter((props:DashProps) =>{
                     <Typography variant="h6" noWrap>
                         Dashboard
                     </Typography>
-                    <Button className={classes.toolbar_button}>Create New Drones</Button>
+                    <Button className={classes.toolbar_button}>Create More Heroes</Button>
                 </Toolbar>
             </AppBar>
             <MUIDrawer
@@ -163,7 +175,7 @@ export const Dashboard = withRouter((props:DashProps) =>{
                     paper: classes.drawerPaper
                 }}>
                     <div className={classes.drawerHeader}>
-                        <IconButton onClick={handleDrawerClose}>
+                        <IconButton onClick={handleDrawerClose} className={classes.iconButton}>
                             {theme.direction === 'ltr' ? <ChevronLeftIcon /> : <ChevronRightIcon />}
                         </IconButton>
                     </div>
@@ -185,7 +197,7 @@ export const Dashboard = withRouter((props:DashProps) =>{
                 })}>
                 <div className={classes.drawerHeader} />
                 
-                {/* <DataTable /> */}
+                <DataTable />
             </main>
         </div>
     )

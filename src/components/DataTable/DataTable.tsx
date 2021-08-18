@@ -52,9 +52,9 @@ const rows = [
 
 export const DataTable = () =>{
     return (
-        <div style={{height: 700, width: '100%'}}>
+        <div style={{height: 700, width: '100%', color: 'white'}}>
             <h2>Drones in Inventory</h2>
-            <DataGrid rows={rows} columns={columns} pageSize={rows.length} checkboxSelection />
+            <DataGrid style={{color: 'white'}} rows={rows} columns={columns} pageSize={rows.length} checkboxSelection />
         </div>
     )
 }
