@@ -16,7 +16,7 @@ interface HeroFormProps {
 interface HeroState {
     hero_name: string,
     description: string,
-    comics_appeared_in: number,
+    comics_appeared_in: string,
     super_power: string
 }
 
@@ -32,7 +32,7 @@ export const HeroForm = (props:HeroFormProps) => {
         console.log(props.id)
 
         if(props.id!){
-            server_calls.update(props.id!, data)
+            server_calls.update(props.id, data)
             console.log(`Updated:${data} ${props.id}`)
             window.location.reload()
             event.target.reset();

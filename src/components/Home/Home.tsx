@@ -3,7 +3,7 @@ import {makeStyles} from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
 import marvel_background from '../../assets/images/wp2436369-marvel-cinematic-universe-wallpapers.jpg';
-
+import { AuthCheck } from 'reactfire';
 
 
 interface Props{
@@ -60,6 +60,10 @@ const useStyles = makeStyles({
     subTitle:{
         marginTop: '3vh',
         marginBottom: '3vh'
+    },
+    marvelButtonText:{
+        textDecoration: 'none',
+        color: 'red'
     }
 })
 
@@ -78,12 +82,19 @@ export const Home = (props:Props) => {
                         <li>
                             <Link to='/' className={classes.nav_a}>Home</Link>
                         </li>
-                        <li>
-                            <Link to='/signin' className={classes.nav_a}>Sign In</Link>
-                        </li>
-                        <li>
+                        <AuthCheck fallback ={
+                            <li>
+                                <Link to='/signin' className={classes.nav_a}>Sign In</Link>
+                            </li>
+                        }>
+                            <li>
                             <Link to='/dashboard' className={classes.nav_a}>Dashboard</Link>
-                        </li>
+                            </li>
+                            <li>
+                                <Link to='/signin' className={classes.nav_a}>Sign out</Link>
+                            </li>
+                        </AuthCheck>
+
                     </ul>
                 </div>
             </nav>
@@ -91,7 +102,12 @@ export const Home = (props:Props) => {
                 <div className={classes.main_text}>
                     <h1>{props.title}</h1>
                     <p className={classes.subTitle}>Let's Get MARVELous</p>
-                    <Button variant="outlined" color="secondary">MARVEL</Button>
+                    <AuthCheck fallback ={
+                        null
+                    }>
+                    <Button variant="outlined" color="secondary"><Link to='/dashboard' className={classes.marvelButtonText}>MARVEL at our Heroes</Link></Button>
+                    </AuthCheck>
+                    
                 </div>
             </main>
         </div>

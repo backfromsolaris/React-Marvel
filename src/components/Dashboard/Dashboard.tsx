@@ -156,6 +156,10 @@ export const Dashboard = withRouter((props:DashProps) =>{
         {
             text: 'Sign In',
             onClick: () => history.push('/signin')
+        },
+        {
+            text: 'Sign Out',
+            onClick: () => history.push('/signin')
         }
     ];
     // Finally - returning our dashboard using all information stored above
