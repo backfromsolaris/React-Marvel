@@ -1,7 +1,10 @@
-import React from 'react';
+import { DataTable, HeroForm } from '../../components'; 
+// Add DroneForm to the curly braces
+
 import { Drawer as MUIDrawer, 
     ListItem, 
-    List,  
+    List, 
+    ListItemIcon, 
     ListItemText, 
     Theme,
     useTheme, 
@@ -12,7 +15,12 @@ import { Drawer as MUIDrawer,
     IconButton,
     Typography,
     Divider,
-    Button
+    Button,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle
 } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import MenuIcon from '@material-ui/icons/Menu'
@@ -21,7 +29,6 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight'
 import clsx from 'clsx';
 import { RouteComponentProps, withRouter, Switch, Route } from "react-router-dom";
 import { useState } from 'react';
-import { DataTable } from '../../components';
 import marvel_background from '../../assets/images/wp2436369-marvel-cinematic-universe-wallpapers.jpg';
 
 
@@ -122,6 +129,7 @@ export const Dashboard = withRouter((props:DashProps) =>{
     const theme = useTheme();
     // useState Hook
     const [open, setOpen] = useState(false);
+    const [dialogOpen, setDialogOpen] = useState(false);
 
     // functions to set the state of 'open'
     const handleDrawerOpen = () => {
@@ -129,6 +137,14 @@ export const Dashboard = withRouter((props:DashProps) =>{
     };
     const handleDrawerClose = () => {
         setOpen(false);
+    };
+
+    // functions to set the state of 'dialogOpen'
+    const handleDialogClickOpen = () =>{
+      setDialogOpen(true);
+    };
+    const handleDialogClickClose = () =>{
+      setDialogOpen(false);
     };
 
     // organization - keeping a few for later
@@ -163,7 +179,16 @@ export const Dashboard = withRouter((props:DashProps) =>{
                     <Typography variant="h6" noWrap>
                         Dashboard
                     </Typography>
-                    <Button className={classes.toolbar_button}>Create More Heroes</Button>
+                    <Button className={classes.toolbar_button} onClick={handleDialogClickOpen}>Create More Heroes</Button>
+                      <Dialog open={dialogOpen} onClose={handleDialogClickClose} aria-labelledby="form-dialog-title">
+                        <DialogTitle id='form-dialog-title'>Add a New Hero</DialogTitle>
+                        <DialogContent>
+                          <HeroForm />
+                        </DialogContent>
+                        <DialogActions>
+                          <Button onClick={handleDialogClickClose} color='primary'>Done</Button>
+                        </DialogActions>
+                      </Dialog>
                 </Toolbar>
             </AppBar>
             <MUIDrawer
